@@ -24,3 +24,9 @@ print('One'
 print(f'{20:.0%}')
 print(f'{0.2:%}')
 # print(f'{0.2:.0%}')
+
+myNumber = float(20.5)
+myNumber = 19
+
+print(type(myNumber))
+print(bool(28))
