@@ -1,0 +1,16 @@
+--- HW00C Description ---
+
+Write a program to calculate the final
+average of the midterm and final
+exams. Allow the user to enter the
+midterm exam grade and the final
+exam grade. Display the midterm
+exam grade, final exam grade and the
+average.
+
+
+--- OIP ---
+
+
+--- PSEUDO CODE --- 
+
