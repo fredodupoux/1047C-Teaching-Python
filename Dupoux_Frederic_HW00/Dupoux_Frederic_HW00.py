@@ -1,6 +1,11 @@
-# Dupoux Frederic - Jan 8 2025 - COP1047C
+# HWOO + V2
+# Author: Frederic Dupoux
+# Date : 1/8/25
+# Modified: 1/27/25
 
+#
 print(" Welcome, this program will calculate a workers gross pay!")
+print("It will also calculate workers over time pay.")
 
 # Input Workers Name
 workersName: str = (input("Enter worker's name: "))

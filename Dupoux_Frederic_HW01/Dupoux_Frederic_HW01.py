@@ -18,7 +18,7 @@ numberOfFrames: int = int(input("\nEnter the number of frames being purchased: "
 costOfFrames: float = FRAME_PRICE * numberOfFrames
 
 # Compute sales tax
-salesTax: float = costOfFrames * TAX_RATE
+salesTax: float = (costOfFrames * TAX_RATE)
 
 # Compute Total Amount Due
 amountDue: float = costOfFrames + salesTax
