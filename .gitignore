@@ -1,3 +1,6 @@
 *.zip
 *.docx
 .gitignore
+.DS_Store
+_Template*
+_practice*

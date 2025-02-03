@@ -46,15 +46,15 @@ amountDue : float = netAmount + salesTax
 # Display formatted output
 print("\n")
 print(f"Order details for {numberOfFrames} frames.\n")
-print(f"Cost of frames:             ${costOfFrames:10,.2f}")
+print(f"Cost of frames:             ${costOfFrames:>10,.2f}")
 
 # Display discount and net amount only if discount is applied
 if numberOfFrames > 5:
-    print(f"Discount: {int(discountRate*100):2}%               ${discountAmount:10,.2f}")
-    print(f"Net Amount:                 ${netAmount:10,.2f}")
+    print(f"Discount: {int(discountRate*100):<2}%               ${discountAmount:>10,.2f}")
+    print(f"Net Amount:                 ${netAmount:>10,.2f}")
 
 # Display Sales Tax and Total Amount Due
-print(f"Sales Tax:                  ${salesTax:10,.2f}")
+print(f"Sales Tax:                  ${salesTax:>10,.2f}")
 print("----------------------------------------")
-print(f"Total due:                  ${amountDue:10,.2f}")
+print(f"Total due:                  ${amountDue:>10,.2f}")
 print("\n")
