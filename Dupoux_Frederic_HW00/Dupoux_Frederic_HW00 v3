@@ -1,0 +1,26 @@
+--- HW00 DESCRIPTION ---
+
+--- OIP ---
+OUTPUT: Calculate Worker's gross pay
+        Employee ID
+
+        Number of employees processed
+        Total Hours of All employees
+        Total gross pay
+
+INPUT: Employee ID
+       Hours Worked
+       Rate of Pay
+
+PROCESS: Validate employee ID
+         Validate Hours worked
+         Validate Rate of Pay
+         Determine Regular Hours, Overtime Hours
+         Calculate Regular Pay + Overtime Pay
+         Calculate Gross pay (Regular Pay + Overtime Pay)
+         Acumulate Number of Employees Processed
+         Acumulate number of hours
+         Acumulate gross pay
+
+--- PSEUDO CODE --- 
+
