@@ -32,24 +32,22 @@ totalAmountDue: float = 0.0
 print("\n\n*********** Welcome to the Picture Framing Shop! ***********\n")
 
 # prime value to get in the loop
-validNumberOfFrames: bool = False
+validNumberOfFrames: bool = True
 
 # WHILE Number of Frames is NOT valid
-while not validNumberOfFrames:
+while validNumberOfFrames:
     #TRY
     try:
         #PROMPT: Input Number Of Frames: Sentinel value <= 0
         numberOfFrames: int = int(input("Enter the number of frames being purchased or -1 to quit: "))
-        #IF - Validate Sentinel value
+        #IF - Check for Sentinel value
         if numberOfFrames <= 0:
-            validNumberOfFrames = True # exit the loop and quit
+            validNumberOfFrames = False # exit the loop and quit
         #ELSE
         else:
             #IF - Validate Range    
-            if numberOfFrames not in range(MIN_FRAME, MAX_FRAME+1):
+            if numberOfFrames not in range(MIN_FRAME, MAX_FRAME + 1):
                 print(f"Please enter a number in the range of {MIN_FRAME} to {MAX_FRAME} frames: ")
-                # Stay in loop
-                validNumberOfFrames = False
             #ELSE    
             else:
                 #Determine Discount Rate based on Number of Frames
@@ -64,7 +62,7 @@ while not validNumberOfFrames:
                 else :
                     discountRate : float = 0.15
                 #Exit the loop.
-                validNumberOfFrames = True
+                validNumberOfFrames = False
             #ENDIF
         #ENDIF  
     #EXCEPTION
@@ -77,10 +75,10 @@ while not validNumberOfFrames:
 while numberOfFrames > 0:
     #TRY
     try:
-        # prime value to get in the loop
-        validFramePrice: bool = False
+        # Set value to get in the loop
+        validFramePrice: bool = True
         #WHILE frame price is NOT valid
-        while not validFramePrice:
+        while validFramePrice:
             #TRY
             try:
                 #PROMPT: Input Price of Frame
@@ -88,8 +86,6 @@ while numberOfFrames > 0:
                 #IF - Validate frame price range
                 if framePrice < PRICE_RANGE_MIN or framePrice > PRICE_RANGE_MAX:
                     print(f"Enter a valid price ranging from {PRICE_RANGE_MIN} to {PRICE_RANGE_MAX}")
-                    # Stay in Frame Price loop
-                    validFramePrice = False
                 #ELSE
                 else :
                     #Calculate Cost Of Frames (Number of Frames * Price of Frames)
@@ -104,7 +100,7 @@ while numberOfFrames > 0:
                     amountDue : float = netAmount + salesTax
                     # Print and Display formatted output
                     print("\n")
-                    print(f"Order details for {numberOfFrames} frames.\n")
+                    print(f"Order details for {numberOfFrames} frames priced at ${framePrice}\n")
                     print(f"Cost of frames:             ${costOfFrames:>10,.2f}")
                     # Display discount and net amount only if discount is applied
                     if numberOfFrames > 5:
@@ -116,7 +112,7 @@ while numberOfFrames > 0:
                     print(f"Total due:                  ${amountDue:>10,.2f}")
                     print("\n")
                     # Exit Frame Price loop
-                    validFramePrice = True
+                    validFramePrice = False
                 #ENDIF
             #Catch Exceptions:
             except:
@@ -133,23 +129,23 @@ while numberOfFrames > 0:
         totalAmountDue += amountDue
 
         # prime value to get in the loop
-        validNumberOfFrames = False
+        validNumberOfFrames = True
         # WHILE: number of frames is not valid
-        while not validNumberOfFrames:
+        while validNumberOfFrames:
             #TRY
             try:
                 #PROMPT: Input Number Of Frames any number less then zero closes the program
                 numberOfFrames = int(input("Enter -1 to end sales or the number of frames being purchased: "))
-                #IF - Validate sentinel value
+                #IF - check Sentinel value
                 if numberOfFrames <= 0:
                     # exit loop
-                    validNumberOfFrames = True
+                    validNumberOfFrames = False
                 #ELSE 
                 else:
                     #IF - Validate range of frames
                     if numberOfFrames in range(MIN_FRAME, MAX_FRAME+1):
-                        #set valide number of frames to exit loop
-                        validNumberOfFrames = True
+                        #reset valid number of frames to exit loop
+                        validNumberOfFrames = False
                         #Determine Discount Rate based on Number of Frames
                         # IF
                         if 1 <= numberOfFrames <= 5:
@@ -165,7 +161,6 @@ while numberOfFrames > 0:
                     #ELSE - Input valid range.
                     else: 
                         print(f"Enter a number between {MIN_FRAME} and {MAX_FRAME} frames.")
-                        validNumberOfFrames = False
                     #ENDIF
             #Catch Exception
             except:

@@ -1,165 +1,93 @@
---- HW00 DESCRIPTION ---
-
-
 --- OIP ---
+OUTPUT: 
 
+INPUT: 
+
+PROCESS: 
 
 --- PSEUDO CODE --- 
 # Define Sales Tax 75%
-
 # Define price Range
-
 # Define Frame Range
-
 # Initialize Total Number Of Customer = 0
-
 # Initialize Total Number Of Frames = 0
-
 # Initialize Total Cost Of Frames = 0
-
 # Initialize Total Discount = 0
-
 # Initialize Total Sales Tax = 0
-
 # Initialize Total Amount Due = 0
 
 # Print welcome message to user
 
 # prime value to get in the loop
-
 # WHILE Number of Frames is NOT valid
-
     #TRY
-
         #PROMPT: Input Number Of Frames: Sentinel value <= 0
-
         #IF - Validate Sentinel value
-
         #ELSE
-
             #IF - Validate Range
-
                 # Stay in loop
-
             #ELSE
-
                 #Determine Discount Rate based on Number of Frames
                 #IF
-
                 #ELSE
-
                 #Exit the loop.
-
             #ENDIF
-
         #ENDIF
-
     #EXCEPTION
-
         #Stay in the loop and print non numeric error message
-
 #END WHILE
 
 #WHILE Number of Frames > 0
-
     #TRY
-
         # prime value to get in the loop
-
         #WHILE frame price is NOT valid
-
             #TRY
-
                 #PROMPT: Input Price of Frame
-
                 #IF - Validate frame price range
-
                     # Stay in Frame Price loop
-
                 #ELSE
-
                     #Calculate Cost Of Frames (Number of Frames * Price of Frames)
-
                     # Calculate discount amount
-
                     # Calculate net amount
-
                     # Calculate Sales Tax
-
                     # Calculate Amount Due
-
                     # Print and Display formatted output
-
                     # Display discount and net amount only if discount is applied
-
                     # Display Sales Tax and Total Amount Due
-
                     # Exit Frame Price loop
-
                 #ENDIF
-
             #Catch Exceptions:
-
                 #Stay in the price loop and print non numeric error message
-
         #ENDWHILE
 
         #Accumulte Totals
-
         # prime value to get in the loop
-
         # WHILE: number of frames is not valid
-
             #TRY
-
                 #PROMPT: Input Number Of Frames any number less then zero closes the program
-
                 #IF - Validate sentinel value
-
                     # exit loop
-
                 #ELSE
-
                     #IF - Validate range of frames
-
                         #set valide number of frames to exit loop
-
                         #Determine Discount Rate based on Number of Frames
                         # IF
-
                         # ELSE
-
                         #ENDIF
-
                     #ELSE - Input valid range.
-
                         # Stay in loop
-
                     #ENDIF
-
             #Catch Exception
-
                 #Print non numeric error message
-
         #END WHILE
-
     #Catch Exception
-
         #Print non numeric error message
-
 #END WHILE
 
 #IF customer Close Sales
-
     # Print Final Total Accumulators
-
     # Display formatted output
-
     # Display discount and net amount only if discount is applied
-
     # Display Sales Tax and Total Amount Due
-
 #ELSE quit and no print
-
 #ENDIF
-
