@@ -1,6 +1,6 @@
 # HW003
 # Author: Frederic Dupoux
-# Date : 2/15/25
+# Date : 2/24/25
 
 # This program lets a user input the number and price of 8x10 frames a client will buy 
 # and output the cost of the frames, the discount amount, sales tax and total cost of the frames
@@ -15,6 +15,7 @@ PRICE_RANGE_MAX: float = 25.95
 # Define Frame Range
 MIN_FRAME: int = 1
 MAX_FRAME: int = 75
+
 # Initialize Total Number Of Customer = 0
 totalNumberOfCustomer: int = 0
 # Initialize Total Number Of Frames = 0
@@ -110,13 +111,13 @@ while numberOfFrames > 0:
                         # Exit current loop
                         validFramePrice = False
                     #ENDIF
-                #Catch Exceptions:
+                #EXCEPTION:
                 except:
                     #Stay in the price loop and print non numeric error message
                     print("Please input only numeric values for the price of frames.")       
             #ENDWHILE 
         #ENDIF
-    #Catch Exception
+    #EXCEPTION:
     except:
         #Print non numeric error message
         print("Please input only numeric values for the number of frames.")

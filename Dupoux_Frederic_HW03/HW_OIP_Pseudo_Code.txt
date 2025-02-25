@@ -1,13 +1,43 @@
 --- OIP ---
-OUTPUT: 
 
-INPUT: 
+OUTPUT:     Current Cost of Frames
+            Current Discount Amount
+            Current Net Amount
+            Current Sales Tax
+            Current Amount Due
 
-PROCESS: 
+            Total number of customers processed
+            Total number of 8x10 picture frames sold
+            Total cost of 8x10 picture frames sold
+            Total amount of discounts
+            Total of sales tax
+            Total of amount due
+
+
+INPUT:      Number of Frames
+            Price of frames
+
+
+PROCESS:    Validate Number of Frames ( > 0 and <= 75) 
+            Validate Price of Frames >= 16.95 and  <= 25.95. 
+            Calculate Cost Of Frames (Number of Frames * Price of Frames)
+            Determine Discount Rate based on Number of Frames
+            Calculate Discount Amount (Cost Of Frames * Discount Rate)
+            Calculate Net Amount (Cost of Frames – Discount Amount)
+            Calculate Sales Tax ( Net Amount * Sales Rate)
+            Calculate Amount Due ( Net Amount + Sales Tax)
+
+            Accumulate Number Of Customers
+            Accumulate Number Of Frames 
+            Accumulate Total cost of 8x10 picture frames sold
+            Accumulate Total amount of discounts
+            Accumulate Total of sales tax
+            Accumulate Total of amount due
+
 
 --- PSEUDO CODE --- 
 # Define Sales Tax 75%
-# Define price Range
+# Define price Ranges
 # Define Frame Range
 # Initialize Total Number Of Customer = 0
 # Initialize Total Number Of Frames = 0
@@ -16,78 +46,46 @@ PROCESS:
 # Initialize Total Sales Tax = 0
 # Initialize Total Amount Due = 0
 
-# Print welcome message to user
 
-# prime value to get in the loop
-# WHILE Number of Frames is NOT valid
-    #TRY
-        #PROMPT: Input Number Of Frames: Sentinel value <= 0
-        #IF - Validate Sentinel value
-        #ELSE
-            #IF - Validate Range
-                # Stay in loop
-            #ELSE
-                #Determine Discount Rate based on Number of Frames
-                #IF
-                #ELSE
-                #Exit the loop.
-            #ENDIF
-        #ENDIF
-    #EXCEPTION
-        #Stay in the loop and print non numeric error message
-#END WHILE
+# Prime values to get in the loop
 
 #WHILE Number of Frames > 0
     #TRY
-        # prime value to get in the loop
-        #WHILE frame price is NOT valid
-            #TRY
-                #PROMPT: Input Price of Frame
-                #IF - Validate frame price range
-                    # Stay in Frame Price loop
-                #ELSE
-                    #Calculate Cost Of Frames (Number of Frames * Price of Frames)
-                    # Calculate discount amount
-                    # Calculate net amount
-                    # Calculate Sales Tax
-                    # Calculate Amount Due
-                    # Print and Display formatted output
-                    # Display discount and net amount only if discount is applied
-                    # Display Sales Tax and Total Amount Due
-                    # Exit Frame Price loop
-                #ENDIF
-            #Catch Exceptions:
-                #Stay in the price loop and print non numeric error message
-        #ENDWHILE
+        #PROMPT: Input number of frames
+        #IF - Validate Sentinel values
+            # Set default values for discountRate & validFramePrice
+            #IF - Validate range of frames
+            #ELSE - Determine Discount Rate based on Number of Frames
+                # IF
+                # ELSE
+                # Prime Value to get in next Loop
+            #ENDIF
 
-        #Accumulte Totals
-        # prime value to get in the loop
-        # WHILE: number of frames is not valid
-            #TRY
-                #PROMPT: Input Number Of Frames any number less then zero closes the program
-                #IF - Validate sentinel value
-                    # exit loop
-                #ELSE
-                    #IF - Validate range of frames
-                        #set valide number of frames to exit loop
-                        #Determine Discount Rate based on Number of Frames
-                        # IF
-                        # ELSE
-                        #ENDIF
-                    #ELSE - Input valid range.
-                        # Stay in loop
+            #WHILE frame price is valid
+                #TRY
+                    #PROMPT: Input Price of Frame
+                    #IF - Validate frame price range
+                    #ELSE
+                        #Calculate Cost Of Frames
+                        # Calculate discount amount
+                        # Calculate net amount
+                        # Calculate Sales Tax
+                        # Calculate Amount Due
+
+                        # Print and Display formatted output
+                        # Display discount and net amount only if discount is applied
+                        # Display Sales Tax and Total Amount Due
+
+                        #Accumulte Totals
+                        # Exit current loop
                     #ENDIF
-            #Catch Exception
-                #Print non numeric error message
-        #END WHILE
-    #Catch Exception
+                #EXCEPTION:
+                    #Stay in the price loop and print non numeric error message
+            #ENDWHILE 
+        #ENDIF
+    #EXCEPTION:
         #Print non numeric error message
 #END WHILE
 
-#IF customer Close Sales
-    # Print Final Total Accumulators
-    # Display formatted output
-    # Display discount and net amount only if discount is applied
-    # Display Sales Tax and Total Amount Due
-#ELSE quit and no print
-#ENDIF
+# Print Final Total Accumulators
+# Display formatted output
