@@ -15,6 +15,16 @@ PRICE_RANGE_MAX: float = 25.95
 # Define Frame Range
 MIN_FRAME: int = 1
 MAX_FRAME: int = 75
+# Define Discount Brackets
+DISCOUNT_5: int = 5
+DISCOUNT_10: int = 10
+DISCOUNT_15: int = 15
+# Define Discount Value
+DISCOUNT_5_VALUE: float = 0.05
+DISCOUNT_10_VALUE: float = 0.10
+DISCOUNT_15_VALUE: float = 0.15
+
+
 
 # Initialize Total Number Of Customer = 0
 totalNumberOfCustomer: int = 0
@@ -35,16 +45,16 @@ print("\n\n*********** Welcome to the Picture Framing Shop! ***********\n")
 numberOfFrames: int = 1
 
 #WHILE Number of Frames > 0
-while numberOfFrames > 0:
+while numberOfFrames != -1:
     #TRY
     try:
         #PROMPT: Input number of frames
-        numberOfFrames = int(
+        numberOfFrames: int = int(
             input("Enter -1 to end sales or the number of frames being purchased: "))
         #IF - Validate Sentinel values
-        if numberOfFrames > 0:
-            # Set default values for discountRate & validFramePrice
-            discountRate : float = 0.00 
+        if numberOfFrames != -1:
+            # Initialize default values for discountRate & validFramePrice
+            discountRate: float = 0.00 
             validFramePrice: bool = False 
             
             #IF - Validate range of frames
@@ -52,18 +62,21 @@ while numberOfFrames > 0:
                 print(f"Please enter a number in the range of {MIN_FRAME} to {MAX_FRAME} frames.")
             #ELSE - Determine Discount Rate based on Number of Frames
             else: 
-                # IF
-                if 1 <= numberOfFrames <= 5:
-                    discountRate : float = 0.00
-                elif 6 <= numberOfFrames <= 10:
-                    discountRate : float = 0.05
-                elif 11 <= numberOfFrames <= 15:
-                    discountRate : float = 0.10
-                # ELSE
+                # IF - Number Of Frames > 15: Discount = 15%
+                if numberOfFrames > DISCOUNT_15:
+                    discountRate: float = DISCOUNT_15_VALUE
+                #ELIF - Number Of Frames > 10: Discount = 10%    
+                elif numberOfFrames > DISCOUNT_10:
+                    discountRate: float = DISCOUNT_10_VALUE
+                #ELIF - Number Of Frames > 5: Discount = 5%    
+                elif numberOfFrames > DISCOUNT_5:
+                    discountRate: float = DISCOUNT_10_VALUE
+                # ELSE - Discount = 10%  
                 else :
-                    discountRate : float = 0.15
+                    discountRate: float = 0
                 # Prime Value to get in next Loop
                 validFramePrice: bool = True
+                #ENDIF
             #ENDIF
 
             #WHILE frame price is valid
@@ -80,16 +93,16 @@ while numberOfFrames > 0:
                         #Calculate Cost Of Frames (Number of Frames * Price of Frames)
                         costOfFrames: float = framePrice * numberOfFrames
                         # Calculate discount amount
-                        discountAmount : float = costOfFrames * discountRate
+                        discountAmount: float = costOfFrames * discountRate
                         # Calculate net amount
-                        netAmount : float = costOfFrames - discountAmount
+                        netAmount: float = costOfFrames - discountAmount
                         # Calculate Sales Tax
-                        salesTax : float = netAmount * SALES_TAX_RATE
+                        salesTax: float = netAmount * SALES_TAX_RATE
                         # Calculate Amount Due
-                        amountDue : float = netAmount + salesTax
+                        amountDue: float = netAmount + salesTax
                         # Print and Display formatted output
                         print("\n")
-                        print(f"Order details for {numberOfFrames} frames priced at ${framePrice}\n")
+                        print(f"Order details for {numberOfFrames} frames priced at ${framePrice:.2f}\n")
                         print(f"Cost of frames:             ${costOfFrames:>10,.2f}")
                         # Display discount and net amount only if discount is applied
                         if numberOfFrames > 5:
@@ -145,8 +158,10 @@ else:
     print("--------------------------------------------")
     print(f"Total Cost of frames:           ${totalCostOfFrames:>10,.2f}")
     # Display discount and net amount only if discount is applied
+    #IF
     if totalDiscount > 0:
         print(f"Total Discount:                 ${totalDiscount:>10,.2f}")
+    #ENDIF 
     # Display Sales Tax and Total Amount Due
     print(f"Total Sales Tax:                ${totalSalesTax:>10,.2f}")
     print("--------------------------------------------")
