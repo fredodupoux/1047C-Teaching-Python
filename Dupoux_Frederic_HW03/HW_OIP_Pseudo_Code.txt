@@ -36,9 +36,13 @@ PROCESS:    Validate Number of Frames ( > 0 and <= 75)
 
 
 --- PSEUDO CODE --- 
-# Define Sales Tax 75%
-# Define price Ranges
-# Define Frame Range
+# Define Sales Tax 7.5%
+# Define price Ranges - PRICE_RANGE_MIN - PRICE_RANGE_MAX
+# Define Frame Range - MIN_FRAME - MAX_FRAME
+# Define Discount Brackets - DISCOUNT_5 - DISCOUNT_10 - DISCOUNT_15
+# Define Discount Values - DISCOUNT_5_VALUE - DISCOUNT_10_VALUE - DISCOUNT_15_VALUE
+
+
 # Initialize Total Number Of Customer = 0
 # Initialize Total Number Of Frames = 0
 # Initialize Total Cost Of Frames = 0
@@ -46,46 +50,59 @@ PROCESS:    Validate Number of Frames ( > 0 and <= 75)
 # Initialize Total Sales Tax = 0
 # Initialize Total Amount Due = 0
 
+# Print welcome message to user
 
-# Prime values to get in the loop
+# Initializing numberOfFrames, discountRate and validFramePrice before getting in the loop
 
-#WHILE Number of Frames > 0
+#WHILE Number of Frames != -1
     #TRY
         #PROMPT: Input number of frames
-        #IF - Validate Sentinel values
-            # Set default values for discountRate & validFramePrice
-            #IF - Validate range of frames
+        #IF - Validate Sentinel value -1
+            #IF - numberOfFrames not in range(MIN_FRAME, MAX_FRAME+1)
+                # Print range error message to user
             #ELSE - Determine Discount Rate based on Number of Frames
-                # IF
-                # ELSE
-                # Prime Value to get in next Loop
+                #IF - Number Of Frames > 15: Discount = 15%
+                #ELIF - Number Of Frames > 10: Discount = 10%    
+                #ELIF - Number Of Frames > 5: Discount = 5%    
+                #ELSE - Discount = 0  
+                #ENDIF   
+                # Prime validFramePrice to get in next Loop
             #ENDIF
 
             #WHILE frame price is valid
                 #TRY
                     #PROMPT: Input Price of Frame
-                    #IF - Validate frame price range
+                    #IF - framePrice < PRICE_RANGE_MIN or framePrice > PRICE_RANGE_MAX:
+                        # Print range error message
                     #ELSE
-                        #Calculate Cost Of Frames
+                        # Calculate Cost Of Frames (Number of Frames * Price of Frames)
                         # Calculate discount amount
                         # Calculate net amount
                         # Calculate Sales Tax
                         # Calculate Amount Due
-
                         # Print and Display formatted output
                         # Display discount and net amount only if discount is applied
+                        #IF - Discount > 0 
+                            # Print Discount & Net Amount
+                        #ENDIF    
                         # Display Sales Tax and Total Amount Due
-
                         #Accumulte Totals
-                        # Exit current loop
+                        # !validFramePrice to Exit current loop
                     #ENDIF
-                #EXCEPTION:
-                    #Stay in the price loop and print non numeric error message
+                #EXCEPTION:     
             #ENDWHILE 
         #ENDIF
     #EXCEPTION:
-        #Print non numeric error message
-#END WHILE
+#ENDWHILE
 
-# Print Final Total Accumulators
-# Display formatted output
+#IF customer Close Sales
+    # Print Goodbye message
+#ELSE quit and print Closing sales details
+    # Print Final Total Accumulators
+    # Display formatted output
+    
+    #IF - Discount > 0
+        # Print Total Discount
+    #ENDIF 
+    # Display Sales Tax and Total Amount Due
+#ENDIF
