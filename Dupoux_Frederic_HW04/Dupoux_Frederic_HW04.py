@@ -12,7 +12,7 @@
 # All using functions store in a module.
 
 # Import modules to access functions
-import modules as fd
+import Dupoux_Frederic_HWX04_module as fd
 
 # Print welcome message to user
 print("\n\n*********** Welcome to the Picture Framing Shop V2! ***********\n")
@@ -23,12 +23,12 @@ framePrice: float = 0.00
 
 #WHILE - number of frames is not -1 get in Main Loop
 while (numberOfFrames != -1):
-    # get number of frames from user
-    numberOfFrames: int = fd.GetNumberOfFrames()
+    # Input number of frames from user
+    numberOfFrames: int = fd.InputNumberOfFrames()
     #IF - number of frame is not -1 stay in the loop
     if numberOfFrames != -1:
-        # get price of frames from user
-        framePrice: float = fd.GetFramePrice()
+        # Input price of frames from user
+        framePrice: float = fd.InputFramePrice()
         #IF - frame price is not -1 continue with sale
         if framePrice != -1:
             # call CalculateSales Function passing the two values collected
@@ -42,6 +42,5 @@ while (numberOfFrames != -1):
         #ENDIF
     #ENDIF    
 #ENDWHILE
-
 # Call PrintTotalSales function when customer exits
 fd.PrintTotalSales()

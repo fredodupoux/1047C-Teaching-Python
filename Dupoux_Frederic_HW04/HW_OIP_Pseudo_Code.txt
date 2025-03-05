@@ -36,6 +36,181 @@ PROCESS:    Validate Number of Frames ( > 0 and <= 75)
 
 
 --- PSEUDO CODE --- 
+
+--- main ---
+
+# Import modules to access functions
+# Print welcome message to user
+
+# Initializing value to get in the loop
+#numberOfFrames = 0
+#framePrice = 0.00
+
+#WHILE - number of frames is not -1
+# Call numberOfFrames = InputNumberOfFrames()
+#IF - number of frame is not -1
+    # Call framePrice = InputFramePrice()
+    #IF - frame price is not -1
+        # Call CalculateSales()
+    #ELSE
+        # Cancel sale without exiting program and Print cancelled sales message
+        # Set numberOfFrames = 0
+    #ENDIF
+#ENDIF    
+#ENDWHILE
+# Call PrintTotalSales()
+
+
+--- Input Number Of Frames ---
+
+# numberOfFrames: int = 0
+# validNumberOfFrames: bool = False
+# WHILE not validNumberOfFrames:
+    #TRY
+        # numberOfFrames = Input number of frames
+        # set validNumberOfFrames = True
+        #IF numberOfFrames is not -1:
+            #IF number of frames is not in range (MIN_FRAME, MAX_FRAME + 1)
+                # Print invalid range message
+                # Set validNumberOfFrames = False
+            #ENDIF
+        #ENDIF
+    #EXCEPTION:
+        # Print nonnumeric error message
+# ENDWHILE
+# Return numberOfFrames
+
+
+--- Input Frame Price ---
+
+# Frame Price float = 0.00
+# Valid Frame Price bool = False
+#WHILE not validFramePrice:
+    #TRY:
+        # framePrice: float = Input Price of Frame
+        # Set valid Frame Price to True
+        #IF framePrice is not -1:
+            #IF framePrice is not in range PRICE_RANGE_MIN to PRICE_RANGE_MAX:
+                # print invalid range message
+                # set valid FramePrice to False
+            #ENDIF
+        #ENDIF
+    #EXCEPTION:
+        # Print non numeric error message
+# ENDWHILE
+# Return Frame Price
+
+--- Get Discount Rate ---
+
+# if numberOfFrames > DISCOUNT_15:
+    # return DISCOUNT_15_VALUE
+# elif numberOfFrames > DISCOUNT_10:
+    # return DISCOUNT_10_VALUE
+# elif numberOfFrames > DISCOUNT_5:
+    # return DISCOUNT_5_VALUE
+# else:
+    # return 0.00
+
+--- CalculateSales ---
+
+# Calculate Cost Of Frames
+# Call Discount Rate = GetDiscountRate()
+# Calculate discount amount
+# Calculate net amount
+# Calculate Sales Tax
+# Calculate Amount Due
+
+# Call SetTotals()
+
+# Print Order details
+# Print Cost Of Frames
+#IF - Discount > 0 
+    # Print Discount 
+    # Print Net Amount
+#ENDIF    
+# Print Sales Tax and 
+# Print Total Amount Due
+
+--- GetTotals ---
+# Access Accumulators from global variables
+# define global total Number Of Customer
+# define global total Number Of Frames
+# define global total Cost Of Frames
+# define global total Discount
+# define global total Sales Tax
+# define global total Amount Due
+
+# return Accumulators
+    total Number Of Customer,
+    total Number Of Frames,
+    total Cost Of Frames,
+    total Discount,
+    total Sales Tax,
+    total Amount Due
+
+
+--- Set Totals ---
+# Access Accumulators from global variables
+# define global total Number Of Customer
+# define global total Number Of Frames
+# define global total Cost Of Frames
+# define global total Discount
+# define global total Sales Tax
+# define global total Amount Due
+
+# Update Accumulators
+# Update total Number Of Customer += 1
+# Update total Number Of Frames += number Of Frames
+# Update total Cost Of Frames += cost Of Frames
+# Update total Discount += discount Amount
+# Update total Sales Tax += sales Tax
+# Update total Amount Due += amount Due
+
+
+--- PrintTotalSales ---
+# Call GetTotals()
+
+#IF total Number Of Customer <= 0:
+    # print Good bye message
+#ELSE:
+    # print closing sales message
+    # Print Final Total Accumulators
+    # print sale summary
+    # Print Total number of customers
+    # Print Total number of frames
+    # Print Total Cost of frames
+    #IF total Discount > 0 
+      # Print Total Discount
+    #ENDIF
+    # Print Sales Tax 
+    # Print Total Amount Due
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Define Sales Tax 7.5%
 # Define price Ranges - PRICE_RANGE_MIN - PRICE_RANGE_MAX
 # Define Frame Range - MIN_FRAME - MAX_FRAME

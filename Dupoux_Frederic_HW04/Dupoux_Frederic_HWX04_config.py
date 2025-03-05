@@ -1,4 +1,4 @@
-# config.py
+# *_config.py
 
 # Define Sales Tax 7.5%
 SALES_TAX_RATE: float = 0.075
