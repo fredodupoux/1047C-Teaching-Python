@@ -17,3 +17,5 @@ PRICE_RANGE_MAX: float = 25.95
 # # Define Frame Range
 MIN_FRAME: int = 1
 MAX_FRAME: int = 75
+# Sentinel Value
+SENTINEL_VALUE: int = -1

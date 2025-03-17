@@ -1,6 +1,6 @@
-# *module.py
+# *_module.py
 #import configuration file with business constants
-from Dupoux_Frederic_HWX04_config import (
+from Dupoux_Frederic_HW05_config import (
     SALES_TAX_RATE,
     MIN_FRAME,
     MAX_FRAME,
@@ -11,76 +11,83 @@ from Dupoux_Frederic_HWX04_config import (
     DISCOUNT_10_VALUE,
     DISCOUNT_15_VALUE,
     PRICE_RANGE_MAX,
-    PRICE_RANGE_MIN
+    PRICE_RANGE_MIN,
+    SENTINEL_VALUE
 )
 
-# Initialize Global Variables to keep track of totals
-#  Total Number Of Customer
+# Initialize Global Accumulators
 totalNumberOfCustomer: int = 0
-#  Total Number Of Frames
 totalNumberOfFrames: int = 0
-#  Total Cost Of Frames
 totalCostOfFrames: float = 0.00
-#  Total Discount
 totalDiscount: float = 0.00
-#  Total Sales Tax
 totalSalesTax: float = 0.00
-#  Total Amount Due
 totalAmountDue: float = 0.00
 
+# --- Get Valid Input ---
+# def getValidInput()
+    
+
+# --- Input Number Of Frames with validation ---
 def InputNumberOfFrames():
+    # value priming
     numberOfFrames: int = 0
     validNumberOfFrames: bool = False
-    # WHILE
+
     while not validNumberOfFrames:
         try:
-            # Input number of frames
+            # Prompt Input number of frames
             numberOfFrames: int = int(
                 input(
                     "Enter -1 to close sales or \nenter the number of frames being purchased: "
                 )
             )
+            # Set value to true
             validNumberOfFrames = True
-            if numberOfFrames != -1:
-                # Validate range of frames
+            # check input for sentinel
+            if numberOfFrames != SENTINEL_VALUE:
+                # validate range of frames
                 if numberOfFrames not in range(MIN_FRAME, MAX_FRAME + 1):
                     print(
                         f"Please enter a number in the range of {MIN_FRAME} to {MAX_FRAME} frames."
                     )
+                    # Set value to false if incorrect
                     validNumberOfFrames = False
-        except:
-            # Stay in the price loop and print non numeric error message
+        except ValueError:
+            # catch errors and print nonnumeric error message
             print("Input only numeric values. Please try again!")
-    # ENDWHILE
     return numberOfFrames
 
-
+# --- Input Frame Price with validation ---
 def InputFramePrice():
+    # value priming
     framePrice: float = 0.00
     validFramePrice: bool = False
+
     while not validFramePrice:
         try:
-            # Input Price of Frame
+            # Prompt Input Price of Frame
             framePrice: float = float(
                 input(
                     "\nEnter -1 to cancel this sale or \nenter the price for the frames being purchased: "
                 )
             )
+            # Set value to true            
             validFramePrice = True
-            if framePrice != -1:
-                # Validate frame price range
+            # check sentinel value
+            if framePrice != SENTINEL_VALUE:
+                # validate frame price range
                 if framePrice < PRICE_RANGE_MIN or framePrice > PRICE_RANGE_MAX:
                     print(
                         f"Enter a valid price ranging from {PRICE_RANGE_MIN} to {PRICE_RANGE_MAX}"
                     )
+                    # Set value to false if incorrect
                     validFramePrice = False
-        except:
-            # Stay in the price loop and print non numeric error message
+        except ValueError:
+            # catch errors and print nonnumeric error message
             print("Please input only numeric values for the price of frames.")
-    # ENDWHILE
     return framePrice
 
-
+# --- Get Discount Rate based on number of frames ---
 def GetDiscountRate(numberOfFrames: int):
     if numberOfFrames > DISCOUNT_15:
         return DISCOUNT_15_VALUE
@@ -91,17 +98,19 @@ def GetDiscountRate(numberOfFrames: int):
     else:
         return 0.00
 
-
+# --- CalculateSales based on number of frames, frame price and tax rates ---
 def CalculateSales(
     numberOfFrames: int, framePrice: float, salesTaxRate: float = SALES_TAX_RATE
 ):
     # Calculate sales
     costOfFrames: float = framePrice * numberOfFrames
+    # Call GetDiscountRate Function
     discountRate: float = GetDiscountRate(numberOfFrames)
     discountAmount: float = costOfFrames * discountRate
     netAmount: float = costOfFrames - discountAmount
     salesTax: float = netAmount * salesTaxRate
     amountDue: float = netAmount + salesTax
+    
     # Call SetTotals Function
     SetTotals(numberOfFrames, costOfFrames, discountAmount, salesTax, amountDue)
 
@@ -121,7 +130,7 @@ def CalculateSales(
     print(f"Total due:                  ${amountDue:>10,.2f}")
     print("\n")
 
-
+# --- GetTotals from Accumulators ---
 def GetTotals():
     # Access Totals from global variables
     global totalNumberOfCustomer
@@ -130,7 +139,7 @@ def GetTotals():
     global totalDiscount
     global totalSalesTax
     global totalAmountDue
-
+    # Return Accumulators
     return (
         totalNumberOfCustomer,
         totalNumberOfFrames,
@@ -140,7 +149,7 @@ def GetTotals():
         totalAmountDue
     )
 
-
+# --- Set Totals ---
 def SetTotals(numberOfFrames, costOfFrames, discountAmount, salesTax, amountDue):
     # Access totals from global variables
     global totalNumberOfCustomer
@@ -158,15 +167,10 @@ def SetTotals(numberOfFrames, costOfFrames, discountAmount, salesTax, amountDue)
     totalSalesTax += salesTax
     totalAmountDue += amountDue
 
-
+# --- PrintTotalSales ---
 def PrintTotalSales():
-    (
-        totalNumberOfCustomer,
-        totalNumberOfFrames,
-        totalCostOfFrames,
-        totalDiscount,
-        totalSalesTax,
-        totalAmountDue
+    # Set local variables to Accumulators by Calling GetTotals function
+    (totalNumberOfCustomer, totalNumberOfFrames, totalCostOfFrames, totalDiscount, totalSalesTax, totalAmountDue
     ) = GetTotals()
 
     if totalNumberOfCustomer <= 0:

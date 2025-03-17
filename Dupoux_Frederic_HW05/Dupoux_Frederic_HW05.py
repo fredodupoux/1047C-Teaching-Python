@@ -1,19 +1,22 @@
-# HW004
+# HW005
 # Author: Frederic Dupoux
-# Date : 3/3/25
+# Date : 3/17/25
 
-# This program lets a user input 
-# the number and price of 8x10 frames a client will buy 
-# and output the cost of the frames, 
-# the discount amount, sales tax and total cost.
-# It will cumulate all the sales until the user quits
-# And it will output the total amount of customers, 
-# total cost of frames, discount sales tax and grand total due.
-# All using functions store in a module.
+# Create the OIP, Pseudo code for two programs that will allow the user of Basket Plus to create (program 1) and list (program2) a sequential file in Basket ID order.
+# Following is the structure of each record:
+
+# Basket ID 9999 (must be four digits, 1000-9999)
+# Product Description x(25)
+# Unit Price 99.99 (5.95-75.95)
+# Quantity 999 (0-999)
+
+# The create program should validate all data and provide a total of records created. In the creation program, a negative value for the Basket ID indicates the end of the creation process.
+
+# The list program should produce a report of the records in a column format with headings, Inventory Value (Unit Price * Quantity) column with total, and a total number of records read. You need to create the master file with the following data and include it in your homework folder.
 
 # Import modules to access functions
-import Dupoux_Frederic_HW04_module as fd
-from Dupoux_Frederic_HW04_config import (
+import Dupoux_Frederic_HW05_module as fd
+from Dupoux_Frederic_HW05_config import (
     SENTINEL_VALUE
 )
 # Print welcome message to user
