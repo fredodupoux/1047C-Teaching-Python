@@ -39,7 +39,7 @@ def CreateFile():
             previousID: int = basketID
             basketID: int = bp.InputValidBasketID()
             while basketID <= previousID and basketID >= 0:
-                print("Invalid ID.")
+                print(f"Invalid ID. BasketID# must be greater then {previousID}.")
                 basketID: int = bp.InputValidBasketID()
 
     print(f"Total Records Saved: {totalRecords}")
@@ -53,7 +53,7 @@ def ReadFile():
             basketID: int = file.readline()
             # Print Headers
             print(f"\n{"Basket ID":^10} | {"Product Description":^27} | {"Unit Price":^10} | {"Quantity":^9} | {"Value":^12}")
-            print("-------------------------------------------------------------------------------")
+            print("---------------------------------------------------------------------------------")
             # Initialize Total Records
             totalRecords: int = 0
             # Do while Basket ID is not empty
@@ -81,17 +81,11 @@ def ReadFile():
                 # Read next Basket ID
                 basketID: int = file.readline()
             # End while
-            print()
             # Display Total Records
-            print(f"basketplus_product_data.txt file has {totalRecords} records.")
-
-
-            print("")
-            print("--------------------------------------------------------")
-            
+            print("---------------------------------------------------------------------------------\n")
+            print(f"basketplus_product_data.txt file has {totalRecords} records.\n")            
     except FileNotFoundError:
         print("Error: The file does not exist.")
-
 
 
 def main():
