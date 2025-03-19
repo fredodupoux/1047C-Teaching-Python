@@ -11,20 +11,20 @@ from Dupoux_Frederic_HW05_config import (
 )
 
 
-# --- Validation Functions --- #
+# --- Business Rules Validation --- #
 def ValidateBasketID(value: int) -> bool:
-    return MIN_BASKET_ID <= value <= MAX_BASKET_ID
-
+    return value < 0 or MIN_BASKET_ID <= value <= MAX_BASKET_ID
+     
 def ValidateUnitPrice(value: float) -> bool:
     return MIN_UNIT_PRICE <= value <= MAX_UNIT_PRICE
 
 def ValidateQuantity(value: int) -> bool:
-    return value in range(MIN_QUANTITY,MAX_QUANTITY)
+    return MIN_QUANTITY <= value <= MAX_QUANTITY
 
 def ValidateDescription(description: str) -> bool:
-    return len(description) != 0 and len(description) < MAX_DESCRIPTION_LENGTH
+    return len(description) != 0 and len(description) <= MAX_DESCRIPTION_LENGTH
 
-# --- Get Valid Numeric Input --- #
+# --- Numeric  Input Validation --- #
 def ValidateInput(inputPrompt: str, validateFunction, errorMessage: str) -> float:
     while True:
         try:
@@ -38,8 +38,8 @@ def ValidateInput(inputPrompt: str, validateFunction, errorMessage: str) -> floa
 
 # --- Get Valid Description --- #
 def InputProductDescription():
-    inputPrompt = "Enter product description (less than 25 characters): "
-    errorMessage = "The product description must be less than 25 characters. Please try again."
+    inputPrompt = "Enter product description: "
+    errorMessage = f"The product description can't be more than {MAX_DESCRIPTION_LENGTH} characters. Try again: "
     while True:
         description: str = input(inputPrompt)
         if ValidateDescription(description):
@@ -50,19 +50,19 @@ def InputProductDescription():
 
 # --- Get Valid Basket ID --- #
 def InputValidBasketID():
-    inputPrompt = "Enter Basket ID (1000-9999) or a negative to exit: "
-    errorMessage = "Basket ID must be between 1000 and 9999."
-    return int(ValidateInput(inputPrompt, ValidateBasketID, errorMessage ))
+    inputPrompt = "Enter BasketID# or a negative to exit: "
+    errorMessage = f"BasketID# must be between {MIN_BASKET_ID} and {MAX_BASKET_ID}. Try again: "
+    return int((ValidateInput(inputPrompt, ValidateBasketID, errorMessage )))
 
 
 # --- Get Valid Unit Price --- #
 def InputValidUnitPrice():
-    inputPrompt = "Enter Unit Price (5.95-75.95): "
-    errorMessage = "Unit Price must be between 5.95 and 75.95."
+    inputPrompt = "Enter Unit Price: "
+    errorMessage = f"Unit Price must be between {MIN_UNIT_PRICE} and {MAX_UNIT_PRICE}. Try again: "
     return ValidateInput(inputPrompt, ValidateUnitPrice, errorMessage )
 
 # --- Get Valid Unit Price --- #
 def InputValidateQuantity():
-    inputPrompt = "Enter Quantity (0-999): "
-    errorMessage = "Quantity must be between 0 and 999."
+    inputPrompt = "Enter Quantity: "
+    errorMessage = f"Quantity must be between {MIN_QUANTITY} and {MAX_QUANTITY}. Try again: "
     return int(ValidateInput(inputPrompt, ValidateQuantity, errorMessage ))

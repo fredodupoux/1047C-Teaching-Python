@@ -1,6 +1,4 @@
-# *_config.py
-
-# Constants for validation
+# Constants for business rules validation
 MIN_BASKET_ID = 1000
 MAX_BASKET_ID = 9999
 MIN_UNIT_PRICE = 5.95

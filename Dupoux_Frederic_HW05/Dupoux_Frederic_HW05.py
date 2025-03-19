@@ -38,7 +38,7 @@ def CreateFile():
             # Continue with loop
             previousID: int = basketID
             basketID: int = bp.InputValidBasketID()
-            while basketID > previousID and basketID >= 0:
+            while basketID <= previousID and basketID >= 0:
                 print("Invalid ID.")
                 basketID: int = bp.InputValidBasketID()
 
@@ -48,12 +48,12 @@ def CreateFile():
 def ReadFile():
     try:
         # Open file
-        with open("prbasketplus_product_dataoduct_data.txt", "r") as file:
+        with open("basketplus_product_data.txt", "r") as file:
             # Read first Basket ID to prime loop
             basketID: int = file.readline()
             # Print Headers
-            print(f"{"Basket ID":6},{"Product Description":27}, {"Unit Price":10},{"Quantity":6},{"Value":8}")
-            print("------------------------------------------------------------------------------------------")
+            print(f"\n{"Basket ID":^10} | {"Product Description":^27} | {"Unit Price":^10} | {"Quantity":^9} | {"Value":^12}")
+            print("-------------------------------------------------------------------------------")
             # Initialize Total Records
             totalRecords: int = 0
             # Do while Basket ID is not empty
@@ -73,9 +73,9 @@ def ReadFile():
                 # Prepare Quantity to print
                 quantity = quantity.rstrip("\n")
                 # Compute Inventory Value
-                inventoryValue: float = unitPrice * quantity 
+                inventoryValue: float = float(unitPrice) * float(quantity) 
                 # Print Record (Basket ID, Description, Price, Quantity)
-                print(f"{basketID:6},{productDescription:25},{unitPrice:10},{quantity:6}, {inventoryValue:8}")
+                print(f"{basketID:^10} | {productDescription:<27} | {float(unitPrice):^10,.2f} | {quantity:^9} | ${inventoryValue:>11,.2f}")
                 # Increment Total Records
                 totalRecords += 1
                 # Read next Basket ID
@@ -83,7 +83,7 @@ def ReadFile():
             # End while
             print()
             # Display Total Records
-            print(f"basketplus_product_data.txt has {totalRecords} records.")
+            print(f"basketplus_product_data.txt file has {totalRecords} records.")
 
 
             print("")
@@ -100,9 +100,9 @@ def main():
     menu: int = 9
     while menu != 0:
         menu = int(input(
-            '''Type 1 to Create a file \
-            Type 2 to read your file \
-            Type 0 to exit: '''
+    '''1. Enter 1 to Create a file,
+2. Enter 2 to read your file, 
+0. Enter 0 to exit: '''
             ))
         if menu == 1:
             # Call the function to create the file
