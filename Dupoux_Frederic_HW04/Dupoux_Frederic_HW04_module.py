@@ -11,8 +11,7 @@ from Dupoux_Frederic_HW04_config import (
     DISCOUNT_10_VALUE,
     DISCOUNT_15_VALUE,
     PRICE_RANGE_MAX,
-    PRICE_RANGE_MIN,
-    SENTINEL_VALUE
+    PRICE_RANGE_MIN
 )
 
 # Initialize Global Accumulators
@@ -23,69 +22,43 @@ totalDiscount: float = 0.00
 totalSalesTax: float = 0.00
 totalAmountDue: float = 0.00
 
-# --- Get Valid Input ---
-# def getValidInput()
+# --- Get Valid Input Universal --- #
+def GetValidInput(inputPrompt: str, validateFunction, errorMessage: str) -> float:
+    while True:
+        try:
+            value = float(input(inputPrompt))
+            if validateFunction(value):
+                return value
+            else:
+                print(errorMessage)
+        except:
+            print("Input only numeric values. Please try again.")
+
+# --- Validate Frame Count --- #
+def ValidateFrameCount (value: float) -> bool:
+    if value == -1:
+        return True
+    if value in range(MIN_FRAME, MAX_FRAME + 1):
+        return True
+
+# --- Validate Frame Price --- #
+def ValidateFramePrice(value: float) -> bool:
+    if value == -1:
+        return True
+    if value >= PRICE_RANGE_MIN and value <= PRICE_RANGE_MAX:
+        return True
     
-
-# --- Input Number Of Frames with validation ---
+# --- Input Number Of Frames --- #
 def InputNumberOfFrames():
-    # value priming
-    numberOfFrames: int = 0
-    validNumberOfFrames: bool = False
+    inputPrompt = "Enter -1 to close sales or \nenter the number of frames being purchased: "
+    errorMessage = f"Please enter a number in the range of {MIN_FRAME} to {MAX_FRAME} frames."
+    return int(GetValidInput(inputPrompt, ValidateFrameCount, errorMessage))
 
-    while not validNumberOfFrames:
-        try:
-            # Prompt Input number of frames
-            numberOfFrames: int = int(
-                input(
-                    "Enter -1 to close sales or \nenter the number of frames being purchased: "
-                )
-            )
-            # Set value to true
-            validNumberOfFrames = True
-            # check input for sentinel
-            if numberOfFrames != SENTINEL_VALUE:
-                # validate range of frames
-                if numberOfFrames not in range(MIN_FRAME, MAX_FRAME + 1):
-                    print(
-                        f"Please enter a number in the range of {MIN_FRAME} to {MAX_FRAME} frames."
-                    )
-                    # Set value to false if incorrect
-                    validNumberOfFrames = False
-        except ValueError:
-            # catch errors and print nonnumeric error message
-            print("Input only numeric values. Please try again!")
-    return numberOfFrames
-
-# --- Input Frame Price with validation ---
+# --- Input Frame Price --- #
 def InputFramePrice():
-    # value priming
-    framePrice: float = 0.00
-    validFramePrice: bool = False
-
-    while not validFramePrice:
-        try:
-            # Prompt Input Price of Frame
-            framePrice: float = float(
-                input(
-                    "\nEnter -1 to cancel this sale or \nenter the price for the frames being purchased: "
-                )
-            )
-            # Set value to true            
-            validFramePrice = True
-            # check sentinel value
-            if framePrice != SENTINEL_VALUE:
-                # validate frame price range
-                if framePrice < PRICE_RANGE_MIN or framePrice > PRICE_RANGE_MAX:
-                    print(
-                        f"Enter a valid price ranging from {PRICE_RANGE_MIN} to {PRICE_RANGE_MAX}"
-                    )
-                    # Set value to false if incorrect
-                    validFramePrice = False
-        except ValueError:
-            # catch errors and print nonnumeric error message
-            print("Please input only numeric values for the price of frames.")
-    return framePrice
+    inputPrompt = "\nEnter -1 to cancel this sale or \nenter the price for the frames being purchased: "
+    errorMessage = f"Enter a valid price ranging from {PRICE_RANGE_MIN} to {PRICE_RANGE_MAX}"
+    return GetValidInput(inputPrompt, ValidateFramePrice, errorMessage)
 
 # --- Get Discount Rate based on number of frames ---
 def GetDiscountRate(numberOfFrames: int):

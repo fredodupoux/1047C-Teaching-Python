@@ -15,37 +15,105 @@
 # The list program should produce a report of the records in a column format with headings, Inventory Value (Unit Price * Quantity) column with total, and a total number of records read. You need to create the master file with the following data and include it in your homework folder.
 
 # Import modules to access functions
-import Dupoux_Frederic_HW05_module as fd
-from Dupoux_Frederic_HW05_config import (
-    SENTINEL_VALUE
-)
-# Print welcome message to user
-print("\n\n*********** Welcome to the Picture Framing Shop V2! ***********\n")
+import Dupoux_Frederic_HW05_module as bp
+totalRecords: int = 0
 
-# Initializing value to get in the loop
-numberOfFrames: int = 0
-framePrice: float = 0.00
 
-#WHILE - number of frames is not -1 get in Main Loop
-while (numberOfFrames != SENTINEL_VALUE):
-    # Input number of frames from user
-    numberOfFrames: int = fd.InputNumberOfFrames()
-    #IF - number of frame is not -1 stay in the loop
-    if numberOfFrames != SENTINEL_VALUE:
-        # Input price of frames from user
-        framePrice: float = fd.InputFramePrice()
-        #IF - frame price is not -1 continue with sale
-        if framePrice != SENTINEL_VALUE:
-            # call CalculateSales Function passing the two values collected
-            fd.CalculateSales(numberOfFrames, framePrice)
-        #ELSE
-        else:
-            # cancel sale without exiting program
-            numberOfFrames = 0
-            print("""
-      *********** SALE CANCELLED *********** \n""")
-        #ENDIF
-    #ENDIF    
-#ENDWHILE
-# Call PrintTotalSales function when customer exits
-fd.PrintTotalSales()
+# Main Function to Create File
+def CreateFile():
+    global totalRecords
+    with open("basketplus_product_data.txt", "w") as new_file:
+        basketID: int = bp.InputValidBasketID()
+        while basketID > 0:
+            productDescription: str = bp.InputProductDescription()
+            unitPrice: float = bp.InputValidUnitPrice()
+            quantity: int = bp.InputValidateQuantity()
+            # write to file
+            new_file.write(str(basketID) + "\n")
+            new_file.write(productDescription + "\n")
+            new_file.write(str(unitPrice) + "\n")
+            new_file.write(str(quantity) + "\n")
+            # Increment Totals
+            totalRecords += 1
+            # Continue with loop
+            previousID: int = basketID
+            basketID: int = bp.InputValidBasketID()
+            while basketID > previousID and basketID >= 0:
+                print("Invalid ID.")
+                basketID: int = bp.InputValidBasketID()
+
+    print(f"Total Records Saved: {totalRecords}")
+
+# Main Function to Read File
+def ReadFile():
+    try:
+        # Open file
+        with open("prbasketplus_product_dataoduct_data.txt", "r") as file:
+            # Read first Basket ID to prime loop
+            basketID: int = file.readline()
+            # Print Headers
+            print(f"{"Basket ID":6},{"Product Description":27}, {"Unit Price":10},{"Quantity":6},{"Value":8}")
+            print("------------------------------------------------------------------------------------------")
+            # Initialize Total Records
+            totalRecords: int = 0
+            # Do while Basket ID is not empty
+            while basketID != "":
+                # 	Prepare Basket ID to print
+                basketID = basketID.rstrip("\n")
+                # Read Product Description
+                productDescription = file.readline()
+                # Prepare Product Description to print
+                productDescription = productDescription.rstrip("\n")
+                # Read Unit Price
+                unitPrice = file.readline()
+                # Prepare Unit Price to print
+                unitPrice = unitPrice.rstrip("\n")
+                # Read Quantity
+                quantity = file.readline()
+                # Prepare Quantity to print
+                quantity = quantity.rstrip("\n")
+                # Compute Inventory Value
+                inventoryValue: float = unitPrice * quantity 
+                # Print Record (Basket ID, Description, Price, Quantity)
+                print(f"{basketID:6},{productDescription:25},{unitPrice:10},{quantity:6}, {inventoryValue:8}")
+                # Increment Total Records
+                totalRecords += 1
+                # Read next Basket ID
+                basketID: int = file.readline()
+            # End while
+            print()
+            # Display Total Records
+            print(f"basketplus_product_data.txt has {totalRecords} records.")
+
+
+            print("")
+            print("--------------------------------------------------------")
+            
+    except FileNotFoundError:
+        print("Error: The file does not exist.")
+
+
+
+def main():
+    # Print welcome message to user
+    print("\n\n*********** Welcome to Basket Plus! ***********\n")
+    menu: int = 9
+    while menu != 0:
+        menu = int(input(
+            '''Type 1 to Create a file \
+            Type 2 to read your file \
+            Type 0 to exit: '''
+            ))
+        if menu == 1:
+            # Call the function to create the file
+            CreateFile()
+        if menu == 2:
+            # Call the function to read and display the file
+            ReadFile()
+        if menu == 0:
+            exit()
+    print("Bye!")
+
+# Call the main function.
+if __name__ == '__main__':
+    main()
