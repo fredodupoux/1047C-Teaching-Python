@@ -2,13 +2,15 @@
 # Author: Frederic Dupoux
 # Date : 3/19/25
 
-# The list program should produce a report of the records in a column format with headings, Inventory Value (Unit Price * Quantity) column with total, and a total number of records read. You need to create the master file with the following data and include it in your homework folder.
+# Create the OIP, Pseudo code for a program that will produce a report of the records in a column format with headings, Inventory Value (Unit Price * Quantity) column with total, and a total number of records read. You need to create the master file with the following data and include it in your homework folder.
+
+FILE_NAME: str = "FD_basketplus_product_list.txt"
 
 # Main Function to Read File
 def ReadFile():
     try:
         # Open file
-        with open("Basketplus_product_list.txt", "r") as file:
+        with open(FILE_NAME, "r") as file:
             # Read first Basket ID to prime loop
             basketID: int = file.readline()
             # Print Headers
@@ -43,7 +45,7 @@ def ReadFile():
             # End while
             # Display Total Records
             print("---------------------------------------------------------------------------------\n")
-            print(f"basketplus_product_data.txt file has {totalRecords} records.")            
+            print(f"{FILE_NAME} file has {totalRecords} records.")            
     except FileNotFoundError:
         print("Error: The file does not exist.")
 
