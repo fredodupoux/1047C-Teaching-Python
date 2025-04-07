@@ -45,9 +45,9 @@ def ReadFile():
             # End while
             # Display Total Records
             print("---------------------------------------------------------------------------------\n")
-            print(f"{FILE_NAME} file has {totalRecords} records.")            
+            print(f"{FILE_NAME} file has a total of {totalRecords} records.\n")            
     except FileNotFoundError:
         print("Error: The file does not exist.")
 
 # Call ReadFile Function
-ReadFile()
+# ReadFile()

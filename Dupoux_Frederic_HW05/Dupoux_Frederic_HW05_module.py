@@ -48,20 +48,20 @@ def InputProductDescription():
 
 
 # --- Get Valid Basket ID --- #
-def InputValidBasketID():
+def InputValidBasketID() -> int:
     inputPrompt = "Enter BasketID# or a negative to exit: "
     errorMessage = f"BasketID# must be between {MIN_BASKET_ID} and {MAX_BASKET_ID}. Try again: "
     return int((ValidateInput(inputPrompt, ValidateBasketID, errorMessage )))
 
 
 # --- Get Valid Unit Price --- #
-def InputValidUnitPrice():
+def InputValidUnitPrice() -> float:
     inputPrompt = "Enter Unit Price: "
     errorMessage = f"Unit Price must be between {MIN_UNIT_PRICE} and {MAX_UNIT_PRICE}. Try again: "
     return ValidateInput(inputPrompt, ValidateUnitPrice, errorMessage )
 
 # --- Get Valid Unit Price --- #
-def InputValidateQuantity():
+def InputValidateQuantity() -> int:
     inputPrompt = "Enter Quantity: "
     errorMessage = f"Quantity must be between {MIN_QUANTITY} and {MAX_QUANTITY}. Try again: "
     return int(ValidateInput(inputPrompt, ValidateQuantity, errorMessage ))
