@@ -16,7 +16,7 @@
 
 # Import modules to access functions
 import Dupoux_Frederic_HW05_Create as create
-import Dupoux_Frederic_HW05_Read as read
+import _code.Dupoux_Frederic_HW05.Dupoux_Frederic_HW05_List as read
 
 def main():
     # Print welcome message to user

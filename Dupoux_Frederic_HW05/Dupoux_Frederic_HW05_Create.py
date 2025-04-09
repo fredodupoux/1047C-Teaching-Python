@@ -15,15 +15,15 @@
 # Import modules to access functions
 import Dupoux_Frederic_HW05_module as bp
 
-FILE_NAME: str = "FD_basketplus_product_list.txt"
+FILE_NAME: str = 'FD_basketplus_product_list.txt'
 
 
 # Main Function to Create File
 def CreateFile():
     # set total records to 0
     totalRecords: int = 0
-    with open(FILE_NAME, "w") as new_file:
-    # with open(FILE_NAME, "a") as new_file:
+    with open(FILE_NAME, 'w') as new_file:
+    # with open(FILE_NAME, 'a') as new_file:
         # Input BasketID
         basketID: int = bp.InputValidBasketID()
         while basketID > 0:
@@ -34,27 +34,28 @@ def CreateFile():
             # Input Quantity
             quantity: int = bp.InputValidateQuantity()
             # write ID
-            new_file.write(str(basketID) + "\n")
+            new_file.write(str(basketID) + '\n')
             # write description
-            new_file.write(productDescription + "\n")
+            new_file.write(productDescription + '\n')
             # write price
-            new_file.write(str(unitPrice) + "\n")
+            new_file.write(str(unitPrice) + '\n')
             # write quantity
-            new_file.write(str(quantity) + "\n")
+            new_file.write(str(quantity) + '\n')
 
             # Increment total records
             totalRecords += 1
+            print('\nRecord Saved\n')
             # set previousID
             previousID: int = basketID
             # input BasketID to continue or exit loop
             basketID: int = bp.InputValidBasketID()
             # validate sequential basketID
             while basketID <= previousID and basketID >= 0:
-                print(f"Invalid ID. BasketID# must be greater then {previousID}.")
+                print(f'Invalid ID. BasketID# must be greater then {previousID}.')
                 # input BasketID to continue or exit loop
                 basketID: int = bp.InputValidBasketID()
 
-    print(f"Total Records Saved: {totalRecords}")
+    print(f'Total Records Saved: {totalRecords}')
 
 # Call Create Function
-# CreateFile()
+CreateFile()

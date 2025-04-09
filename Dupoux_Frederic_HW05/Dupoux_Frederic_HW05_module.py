@@ -33,11 +33,11 @@ def ValidateInput(inputPrompt: str, validateFunction, errorMessage: str) -> floa
             else:
                 print(errorMessage)
         except:
-            print("Input only numeric values. Please try again!")
+            print('Input only numeric values. Please try again!')
 
 # --- Get Valid Description --- #
 def InputProductDescription():
-    inputPrompt = "Enter product description: "
+    inputPrompt = 'Enter product description: '
     errorMessage = f"The product description can't be more than {MAX_DESCRIPTION_LENGTH} characters. Try again: "
     while True:
         description: str = input(inputPrompt)
@@ -49,19 +49,19 @@ def InputProductDescription():
 
 # --- Get Valid Basket ID --- #
 def InputValidBasketID() -> int:
-    inputPrompt = "Enter BasketID# or a negative to exit: "
-    errorMessage = f"BasketID# must be between {MIN_BASKET_ID} and {MAX_BASKET_ID}. Try again: "
+    inputPrompt = 'Enter BasketID# or a negative to exit: '
+    errorMessage = f'BasketID# must be between {MIN_BASKET_ID} and {MAX_BASKET_ID}. Try again: '
     return int((ValidateInput(inputPrompt, ValidateBasketID, errorMessage )))
 
 
 # --- Get Valid Unit Price --- #
 def InputValidUnitPrice() -> float:
-    inputPrompt = "Enter Unit Price: "
-    errorMessage = f"Unit Price must be between {MIN_UNIT_PRICE} and {MAX_UNIT_PRICE}. Try again: "
+    inputPrompt = 'Enter Unit Price: '
+    errorMessage = f'Unit Price must be between {MIN_UNIT_PRICE} and {MAX_UNIT_PRICE}. Try again: '
     return ValidateInput(inputPrompt, ValidateUnitPrice, errorMessage )
 
 # --- Get Valid Unit Price --- #
 def InputValidateQuantity() -> int:
-    inputPrompt = "Enter Quantity: "
-    errorMessage = f"Quantity must be between {MIN_QUANTITY} and {MAX_QUANTITY}. Try again: "
+    inputPrompt = 'Enter Quantity: '
+    errorMessage = f'Quantity must be between {MIN_QUANTITY} and {MAX_QUANTITY}. Try again: '
     return int(ValidateInput(inputPrompt, ValidateQuantity, errorMessage ))
