@@ -1,0 +1,28 @@
+1001
+Brown Basket L
+51.95
+200
+1010
+Brown Basket M
+45.25
+400
+1020
+Brown Basket S
+15.5
+999
+1021
+White Basket L
+75.0
+100
+1030
+White Basket M
+65.78
+225
+1040
+White Basket S
+19.9
+785
+1050
+Black Basket L/M
+50.55
+125
