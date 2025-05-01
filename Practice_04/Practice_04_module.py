@@ -1,6 +1,6 @@
 # *_module.py
 #import configuration file with business constants
-from Dupoux_Frederic_HW04_config import (
+from Practice_04_config import (
     SALES_TAX_RATE,
     MIN_FRAME,
     MAX_FRAME,

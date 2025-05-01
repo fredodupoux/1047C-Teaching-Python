@@ -15,8 +15,8 @@
 # The list program should produce a report of the records in a column format with headings, Inventory Value (Unit Price * Quantity) column with total, and a total number of records read. You need to create the master file with the following data and include it in your homework folder.
 
 # Import modules to access functions
-import Dupoux_Frederic_HW07_Create as create
-import _code.Dupoux_Frederic_HW05.Dupoux_Frederic_HW05_List as read
+import Practice_07_Create as create
+import Practice_07_List as list
 
 def main():
     # Print welcome message to user
@@ -33,7 +33,7 @@ def main():
             create.CreateFile()
         if menu == 2:
             # Call the function to read and display the file
-            read.ReadFile()
+            list.ReadFile()
         if menu == 0:
             exit()
     print("Bye!")

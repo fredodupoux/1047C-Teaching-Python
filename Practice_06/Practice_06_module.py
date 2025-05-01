@@ -1,5 +1,5 @@
 # import configuration file with business constants
-from Dupoux_Frederic_HW06_config import (
+from Practice_06_config import (
     MIN_SALES_PERSON_ID,
     MAX_SALES_PERSON_ID,
     MAX_SALES_AMOUNT,

@@ -13,7 +13,7 @@
 
 
 # Import modules to access functions
-import Dupoux_Frederic_HW05_module as bp
+import Practice_05_module as bp
 
 FILE_NAME: str = 'FD_basketplus_product_list.txt'
 

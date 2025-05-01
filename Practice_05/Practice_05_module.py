@@ -1,5 +1,5 @@
 # import configuration file with business constants
-from Dupoux_Frederic_HW05_config import (
+from Practice_05_config import (
     MIN_BASKET_ID,
     MAX_BASKET_ID,
     MIN_UNIT_PRICE,

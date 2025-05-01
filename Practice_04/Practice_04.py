@@ -12,8 +12,8 @@
 # All using functions store in a module.
 
 # Import modules to access functions
-import Dupoux_Frederic_HW04_module as fd
-from Dupoux_Frederic_HW04_config import (
+import Practice_04_module as fd
+from Practice_04_config import (
     SENTINEL_VALUE
 )
 # Print welcome message to user

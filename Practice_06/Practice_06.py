@@ -8,7 +8,8 @@
 
 # Extra Credit: Sort the salesperson's sales in order from highest to lowest and print the sorted list. You cannot use the Sort function. (10 pts)
 
-import Dupoux_Frederic_HW06_module as fd
+# Import modules to access functions
+import Practice_06_module as fd
 
 # Print Welcome Message
 print('\n***  Compute Employee\'s Daily Sales Summary ***\n')
