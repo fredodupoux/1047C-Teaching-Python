@@ -28,12 +28,15 @@ while salesPersonID != -1:
         # call inputDailySale() to Prompt User for dailySale Amount
         dailySale = fd.inputDailySale(salesPersonID)
 
+    # store a copy of dailySalesList in a variable
+    sortedSalesList = dailySalesList.copy()
     #  call sortSalesList() to sort list
-    sortedSalesList = fd.sortSalesList(dailySalesList)
-    
+    fd.sortSalesList(sortedSalesList)
+
     # Print Sales Summary for Employee if list is not empty
-    if not sortedSalesList:
+    if not dailySalesList:
         print(f'\nThere are no records for Sales Person #{salesPersonID}')
+
     else:
 
         print(f'\nSales summary for Sales Person #{salesPersonID}')
@@ -42,15 +45,15 @@ while salesPersonID != -1:
         index: int = 0
         totalSales: float = 0
         # Print list with a while loop
-        while index < len(sortedSalesList):
-            sales = sortedSalesList[index]
+        while index < len(dailySalesList):
+            sales = dailySalesList[index]
             print(f'Day {index + 1}:                 ${sales:10,.2f}')
             totalSales += sales
             # increment index
             index += 1
 
         # compute average sales
-        averageSales = totalSales / len(sortedSalesList)
+        averageSales = totalSales / len(dailySalesList)
         # print summary of daily sales
         print('-----------------------------------')
         print(f'Total:                 ${totalSales:10,.2f}')
