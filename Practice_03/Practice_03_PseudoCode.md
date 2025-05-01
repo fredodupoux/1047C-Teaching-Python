@@ -1,7 +1,4 @@
-| **Member Name** | **Program Name** | **Date** | **Grade** |
-|-----------------|------------------|----------|-----------|
-| Frederic Dupoux | Practice_03             | 2/11/25  | -6        |
-
+# OIP
 ### OUTPUT
 - Current Cost of Frames
 - Current Discount Amount

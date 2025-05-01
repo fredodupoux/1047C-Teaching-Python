@@ -1,10 +1,4 @@
-# OIP CHART
-
-### Dupoux
-
-| **Member Name** | **Program Name** | **Date** | **Grade** |
-|-----------------|------------------|----------|-----------|
-| Dupoux          | Practice_0             | 1/9/2025 |           |
+# OIP
 
 ### OUTPUT
 - Workers Name
