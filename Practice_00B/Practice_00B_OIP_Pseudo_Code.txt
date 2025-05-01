@@ -1,4 +1,4 @@
---- HW00 Description ---
+--- Practice_0 Description ---
 
 Write a program to calculate the final
 cost of an object after a discount.

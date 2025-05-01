@@ -1,4 +1,4 @@
-# HW02
+# Practice_02
 # Author: Frederic Dupoux
 # Date : 1/27/25
 

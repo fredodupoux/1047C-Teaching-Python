@@ -1,3 +1,7 @@
+# Practice_06
+# Author: Frederic Dupoux
+# Date : 4/14/25
+
 # Create a Python program that will allow the user to process an unknown of sales for individual salespersons using a List. 
 
 # Allow the user to enter the salesperson's ID (2 digits, from 10-99) then the daily sales amount (0-10,000) for an unknown number of days. 
